@@ -10,7 +10,7 @@ jobs:
       - name: Show OS
         run: |
           echo "This job is running on an Ubuntu runner."
-          echo {{ $RUNNER_OS }}
+          echo $RUNNER_OS
 
   macos-echo:
     runs-on: macos-latest
@@ -18,11 +18,12 @@ jobs:
       - name: Show OS
         run: |
           echo "This job is running on a macOS runner."
-          echo {{ $RUNNER_OS }}
+          echo  $RUNNER_OS
   windows-echo:
     runs-on: windows-latest
     steps:
       - name: Show OS
+        shell: bash
         run: |
           echo "This job is running on a Windows runner."
-          echo {{ github.runner.os }}
+          echo $RUNNER_OS
