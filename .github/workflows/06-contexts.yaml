@@ -8,8 +8,8 @@ on:
     inputs:
       debug:
         description: "Enable debug mode"
-        required: false
-        default: "false"
+        type: "boolean"
+        default: false
 jobs:
   build:
     name: echo-data
