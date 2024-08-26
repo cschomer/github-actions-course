@@ -1,11 +1,5 @@
 name: 02 - Workflow Events
 on:
-  pull_request:
-    branches:
-      - main
-  push:
-    branches:
-      - main
   workflow_dispatch:
 jobs:
   build:
