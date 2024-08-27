@@ -1,8 +1,5 @@
 name: 07 - Using Expressions | DEBUG - <'ON' if the debug input is true, 'OFF' otherwise>
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
       debug:
