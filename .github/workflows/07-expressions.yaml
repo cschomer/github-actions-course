@@ -2,7 +2,7 @@ name: 07 - Using Expressions
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
     inputs:
       debug:
