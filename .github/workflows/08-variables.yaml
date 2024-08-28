@@ -20,6 +20,10 @@ env:
   WORKFLOW_VAR: "I am a workflow env var"
   OVERWRITTEN: "I will be overwritten"
   UNDEFINED_VAR_WITH_DEFAULT: ${{ vars.UNDEFINED_VAR || 'I am a default value' }}
+  # Set environment based on workflow_dispatch input, defaulting to 'staging' for other events
+  ENVIRONMENT: ${{ github.event.inputs.environment || 'staging' }}
+  # Set custom_message based on workflow_dispatch input, defaulting if not provided
+  CUSTOM_MESSAGE: ${{ github.event.inputs.custom_message || 'No message provided' }}
 jobs:
   echo:
     runs-on: ubuntu-latest
@@ -52,7 +56,7 @@ jobs:
     environment: prod
     runs-on: ubuntu-latest
     env:
-      TARGET_VAR: "prod"
+      TARGET_VAR: $ENVIRONMENT
     steps:
       - name: Print Prod Variables
         run: |
@@ -60,8 +64,8 @@ jobs:
           echo "Environment var: ${{ vars.TARGET_VAR }}"
       - name: Print selected options
         run: |
-          echo "Selected environment: ${{ github.event.inputs.environment }}"
-          echo "Custom message: ${{ github.event.inputs.custom_message }}"
+          echo "Selected environment: $ENVIRONMENT"
+          echo "Custom message: $CUSTOM_MESSAGE"
   echo-undefined:
     runs-on: ubuntu-latest
     steps:
