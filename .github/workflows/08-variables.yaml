@@ -53,7 +53,7 @@ jobs:
         run: |
           echo "Repo var: ${{ vars.REPOSITORY_VAR }}"
   echo-prod:
-    environment: prod
+    environment: ${{ github.event.inputs.environment || 'staging' }}
     runs-on: ubuntu-latest
     env:
       TARGET_VAR: $ENVIRONMENT
