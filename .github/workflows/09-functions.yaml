@@ -7,7 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Failing step
-        run: echo "I will be skipped"
+        run: |
+          echo "I will be skipped"
+          exit 1
       - name: I will be skipped
         run: echo "I will print if previous steps succeed."
       - name: I will execute
