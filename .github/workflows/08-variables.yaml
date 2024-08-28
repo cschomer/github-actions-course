@@ -4,6 +4,18 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select the environment to deploy to"
+        required: true
+        type: choice
+        options:
+          - staging
+          - prod
+      custom_message:
+        description: "Optional custom message"
+        required: false
+        default: "No message provided"
 env:
   WORKFLOW_VAR: "I am a workflow env var"
   OVERWRITTEN: "I will be overwritten"
@@ -46,6 +58,9 @@ jobs:
         run: |
           echo "Repo var: ${{ vars.REPOSITORY_VAR }}"
           echo "Environment var: ${{ vars.TARGET_VAR }}"
+                - name: Print selected options
+          echo "Selected environment: ${{ github.event.inputs.environment }}"
+          echo "Custom message: ${{ github.event.inputs.custom_message }}"
   echo-undefined:
     runs-on: ubuntu-latest
     steps:
