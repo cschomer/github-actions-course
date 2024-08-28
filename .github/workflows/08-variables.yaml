@@ -58,7 +58,8 @@ jobs:
         run: |
           echo "Repo var: ${{ vars.REPOSITORY_VAR }}"
           echo "Environment var: ${{ vars.TARGET_VAR }}"
-                - name: Print selected options
+      - name: Print selected options
+        run: |
           echo "Selected environment: ${{ github.event.inputs.environment }}"
           echo "Custom message: ${{ github.event.inputs.custom_message }}"
   echo-undefined:
