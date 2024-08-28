@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 env:
   WORKFLOW_VAR: "I am a workflow env var"
+  OVERWRITTEN: "I will be overwritten"
 jobs:
   echo:
     runs-on: ubuntu-latest
