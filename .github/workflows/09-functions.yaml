@@ -16,6 +16,8 @@ jobs:
       - name: Bug step
         if: ${{ failure() && !cancelled() && contains(github.event.pull_request.title, 'fix') }}
         run: echo "I am a bug fix"
+      - name: Sleep for 20 seconds
+        run: sleep 20
       - name: Failing step
         run: echo "I will be skipped"
           exit 1
@@ -30,5 +32,3 @@ jobs:
       - name: I will execute when cancelled
         if: ${{ cancelled() }}
         run: echo "I will print only when the workflow is cancelled."
-      - name: Sleep for 20 seconds
-        run: sleep 20
