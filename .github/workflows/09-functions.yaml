@@ -20,3 +20,5 @@ jobs:
       - name: I will execute when cancelled
         if: ${{ cancelled() }}
         run: echo "I will print only when the workflow is cancelled."
+      - name: Sleep for 20 seconds
+        run: sleep 20
