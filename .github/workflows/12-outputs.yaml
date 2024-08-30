@@ -3,9 +3,13 @@ on:
   workflow_dispatch:
     inputs:
       build-status:
+        type: choice
         description: "Build status"
         required: false
         default: "success"
+        options:
+          - success
+          - failure
 jobs:
   build:
     name: build
