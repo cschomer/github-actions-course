@@ -6,6 +6,15 @@ on:
         description: Whether to execute cache step
         default: "true"
         required: false
+      node-version:
+        description: Choose the Node.js version
+        type: choice
+        default: "20.x"
+        required: true
+        options:
+          - "20.x"
+          - "21.x"
+          - "22.x"
 jobs:
   build:
     runs-on: ubuntu-latest
