@@ -1,0 +1,44 @@
+name: 11 - Working with Inputs
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Your name"
+        required: true
+        default: "John Doe"
+      dry-run:
+        description: "Skip deployment and only print build output"
+        required: false
+        default: false
+        type: boolean
+      target:
+        description: "Which environment the workflow will target"
+        required: true
+        type: environment
+      tag:
+        description: "Release from which to build and deploy"
+        required: false
+        default: "v3"
+        type: choice
+        options:
+          - v1
+          - v2
+          - v3
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        run: echo "Building from tag ${{ github.event.inputs.tag }}"
+
+  deploy:
+    name: deploy
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ success() && !github.event.inputs.dry-run }}
+    env:
+      TARGET: ${{ github.event.inputs.target }}
+    steps:
+      - name: Deploy
+        run: echo "Deploying to ${{ env.TARGET }}"
