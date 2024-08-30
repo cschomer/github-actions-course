@@ -27,3 +27,4 @@ jobs:
     steps:
       - name: Deploy
         run: echo "Deploy the application"
+## Appending values to a file in bash | To append values to a file, we can use the following syntax: echo "<line content>" >> "<file path>"
