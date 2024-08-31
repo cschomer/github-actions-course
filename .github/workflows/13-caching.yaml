@@ -30,7 +30,8 @@ jobs:
           node-version: ${{ github.event.inputs.node-version }}
       - name: Calculate cache key
         id: cache-key
-        run: echo "::set-output name=CACHE_KEY::deps-node-modules-${{ hashFiles('13-caching/react-app/package-lock.json') }}"
+        run: |
+          echo "CACHE_KEY=deps-node-modules-${{ hashFiles('13-caching/react-app/package-lock.json') }}" >> $GITHUB_OUTPUT
       - name: Download cached dependencies
         id: cache
         uses: actions/cache@v3
@@ -43,7 +44,8 @@ jobs:
         run: npm install
         if: steps.cache.outputs.cache-hit != 'true'
       - name: Set cache key output
-        run: echo "::set-output name=deps-cache-key::${{ steps.cache-key.outputs.CACHE_KEY }}"
+        run: |
+          echo "deps-cache-key=${{ steps.cache-key.outputs.CACHE_KEY }}" >> $GITHUB_OUTPUT
         id: set-cache-key
   linting:
     runs-on: ubuntu-latest
