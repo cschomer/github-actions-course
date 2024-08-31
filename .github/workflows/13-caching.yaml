@@ -37,6 +37,8 @@ jobs:
         with:
           path: 13-caching/react-app/node_modules
           key: ${{ steps.cache-key.outputs.CACHE_KEY }}
+          restore-keys: |
+            ${{ runner.os }}-npm-${{ hashFiles('13-caching/react-app/package-lock.json') }}
       - name: Install dependencies
         run: npm install
         if: steps.cache.outputs.cache-hit != 'true'
